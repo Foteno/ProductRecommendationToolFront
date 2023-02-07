@@ -1,0 +1,29 @@
+<form #form="ngForm" class="question-form" (ngSubmit)="submitProductForm(form)">
+  <div class="question-block">
+    <h2>Select your age: </h2>
+    <div *ngFor="let age of agesValues; let i = index">
+      <input type="radio" name="age" [value]="agesKeys[i]" [(ngModel)]="productFormObject.age" required>
+      <label>{{age}}</label>
+    </div>
+  </div>
+  <div class="question-block">
+    <h2>Select your income</h2>
+    <div *ngFor="let income of incomesValues; let i = index">
+      <input type="radio" name="income" [value]="incomesKeys[i]" [(ngModel)]="productFormObject.income" required>
+      <label>{{income}}</label>
+    </div>
+  </div>
+  <div class="question-block">
+    <h2>Are you a student?</h2>
+    <div>
+      <input type="radio" name="student" [value]="true" [(ngModel)]="productFormObject.isStudent" required>
+      <label>Yes</label>
+    </div>
+    <div>
+      <input type="radio" name="student" [value]="false" [(ngModel)]="productFormObject.isStudent" required>
+      <label>No</label>
+    </div>
+  </div>
+  <button class="check-products-button" type="submit">Check recommended products</button>
+</form>
+<app-product-suggestion *ngIf="products && products.length !== 0" [products]="products"></app-product-suggestion>
